@@ -830,84 +830,6 @@
     }
 
     /* ═══════════════════════════════════
-       ⑤ AVIS
-    ═══════════════════════════════════ */
-    .reviews {
-      padding: 7rem 0;
-      background: var(--creme);
-    }
-
-    .reviews-carousel {
-      margin-top: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .reviews-track {
-      display: flex;
-      gap: 1.5rem;
-      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .review-card {
-      flex: 0 0 calc(33.333% - 1rem);
-      background: #fff;
-      border-radius: var(--radius-card);
-      padding: 2rem;
-      border: 1px solid rgba(28,61,43,0.08);
-      box-shadow: 0 4px 24px rgba(28,61,43,0.06);
-      transition: var(--transition);
-    }
-
-    .review-card:hover {
-      box-shadow: 0 12px 40px rgba(28,61,43,0.12);
-      transform: translateY(-2px);
-    }
-
-    .review-stars {
-      color: var(--lime);
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .review-text {
-      font-style: italic;
-      color: rgba(28,61,43,0.75);
-      font-size: 0.97rem;
-      line-height: 1.7;
-      font-weight: 300;
-      margin-bottom: 1.2rem;
-    }
-
-    .review-author strong { font-weight: 700; font-size: 0.9rem; }
-    .review-author span {
-      font-size: 0.8rem;
-      color: rgba(28,61,43,0.5);
-      display: block;
-    }
-
-    .reviews-nav {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-top: 2rem;
-    }
-
-    .reviews-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: rgba(28,61,43,0.2);
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      padding: 0;
-    }
-
-    .reviews-dot.active {
-      background: var(--lime);
-      box-shadow: var(--glow-lime-sm);
-    }
-
     /* ═══════════════════════════════════
        RUPTURE PHOTO 2
     ═══════════════════════════════════ */
@@ -1348,15 +1270,275 @@
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .pricing-grid { grid-template-columns: 1fr; }
       .hero-card { display: none; }
-      .reviews-carousel .review-card { flex: 0 0 90%; }
       .photo-break-text { white-space: normal; text-align: center; }
       .photo-break-2-quote { font-size: 1.1rem; padding: 2rem 1.5rem; }
       section { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
       .about-photo-wrap { max-width: 280px; margin: 0 auto; aspect-ratio: 1/1; }
     }
+
+    /* ═══════════════════════════════════
+       MODALE OUVERTURE PROCHAINE
+    ═══════════════════════════════════ */
+    .modal-launch-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(28,61,43,0.82);
+      backdrop-filter: blur(10px) saturate(140%);
+      -webkit-backdrop-filter: blur(10px) saturate(140%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s ease;
+    }
+
+    .modal-launch-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-launch-box {
+      background: var(--creme);
+      border-radius: 1.75rem;
+      max-width: 560px;
+      width: 100%;
+      padding: 3rem 2.8rem 2.6rem;
+      position: relative;
+      text-align: center;
+      transform: translateY(32px) scale(0.96);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 32px 80px rgba(28,61,43,0.30);
+      overflow: hidden;
+    }
+
+    .modal-launch-overlay.open .modal-launch-box {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Décoration arc vert en haut */
+    .modal-launch-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--lime), #6aa832);
+      border-radius: 1.75rem 1.75rem 0 0;
+    }
+
+    /* Empreinte déco en fond */
+    .modal-launch-box::after {
+      content: '🐾';
+      position: absolute;
+      bottom: -1.2rem;
+      right: -0.8rem;
+      font-size: 9rem;
+      opacity: 0.05;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .modal-launch-close {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.2rem;
+      background: rgba(28,61,43,0.07);
+      border: none;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(28,61,43,0.45);
+      transition: background var(--transition), color var(--transition);
+      font-size: 1.1rem;
+      line-height: 1;
+      z-index: 2;
+    }
+
+    .modal-launch-close:hover {
+      background: rgba(28,61,43,0.14);
+      color: var(--foret);
+    }
+
+    .modal-launch-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 0.9rem;
+    }
+
+    .modal-launch-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-weight: 900;
+      line-height: 1.08;
+      color: var(--foret);
+      margin-bottom: 1.1rem;
+    }
+
+    .modal-launch-title em {
+      font-style: italic;
+      color: var(--lime);
+      font-weight: 300;
+    }
+
+    .modal-launch-sub {
+      font-size: 1rem;
+      color: rgba(28,61,43,0.68);
+      font-weight: 300;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .modal-launch-badges {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.2rem;
+    }
+
+    .modal-launch-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--foret);
+      color: var(--creme);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .modal-launch-badge.alt {
+      background: transparent;
+      border: 1.5px solid var(--lime);
+      color: var(--foret);
+    }
+
+    .modal-launch-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--lime);
+      color: var(--foret);
+      font-weight: 700;
+      font-size: 1.02rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--glow-lime);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .modal-launch-cta:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 28px rgba(143,191,68,0.75), 0 0 60px rgba(143,191,68,0.3);
+    }
+
+    .modal-launch-note {
+      margin-top: 1.1rem;
+      font-size: 0.8rem;
+      color: rgba(28,61,43,0.40);
+    }
+
+    @media (max-width: 600px) {
+      .modal-launch-box { padding: 2.4rem 1.6rem 2rem; }
+      .modal-launch-title { font-size: 1.9rem; }
+    }
+
+    /* ═══════════════════════════════════
+       BOUTON FLOTTANT OUVERTURE
+    ═══════════════════════════════════ */
+    .btn-float-launch {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 1.8rem;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--terracotta);
+      color: var(--creme);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 18px rgba(194,98,42,0.55), 0 0 40px rgba(194,98,42,0.22);
+      animation: floatPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes floatPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(194,98,42,0.55), 0 0 18px rgba(194,98,42,0.55); transform: scale(1); }
+      50%  { box-shadow: 0 0 0 12px rgba(194,98,42,0), 0 0 18px rgba(194,98,42,0.55); transform: scale(1.04); }
+      100% { box-shadow: 0 0 0 0 rgba(194,98,42,0), 0 0 18px rgba(194,98,42,0.55); transform: scale(1); }
+    }
+
+    .btn-float-launch:hover {
+      animation: none;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 0 28px rgba(194,98,42,0.75), 0 0 60px rgba(194,98,42,0.3);
+    }
+
+    @media (max-width: 768px) {
+      .btn-float-launch { font-size: 0.8rem; padding: 0.75rem 1.2rem; bottom: 5.5rem; right: 1rem; }
+    }
   </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════
+     MODALE OUVERTURE PROCHAINE
+════════════════════════════════════════ -->
+<div class="modal-launch-overlay" id="modalLaunch" role="dialog" aria-modal="true" aria-labelledby="modalLaunchTitle">
+  <div class="modal-launch-box">
+    <button class="modal-launch-close" id="modalLaunchClose" aria-label="Fermer">✕</button>
+
+    <p class="modal-launch-eyebrow">Ouverture prochaine</p>
+
+    <h2 class="modal-launch-title" id="modalLaunchTitle">
+      Cyno Cross<br><em>arrive bientôt</em>
+    </h2>
+
+    <p class="modal-launch-sub">
+      Le service de dog walking dans le Haut-Languedoc ouvre ses portes prochainement. Restez connectés&nbsp;!
+    </p>
+
+    <div class="modal-launch-badges">
+      <span class="modal-launch-badge">🐾 Solo</span>
+      <span class="modal-launch-badge">🐕 Groupes de 4 max</span>
+    </div>
+    <p style="font-size:0.88rem;color:rgba(28,61,43,0.55);margin-top:0.7rem;margin-bottom:1.5rem;">🏕️ Balades canines en pleine nature</p>
+
+    <a href="mailto:cyno.cross@hotmail.com" class="modal-launch-cta" id="modalLaunchCta">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Être prévenu à l'ouverture
+    </a>
+
+    <p class="modal-launch-note">Aucun engagement.</p>
+  </div>
+</div>
+
+<!-- ═══════════ BOUTON FLOTTANT OUVERTURE ═══════════ -->
+<a href="mailto:cyno.cross@hotmail.com" class="btn-float-launch">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  Être prévenu à l'ouverture
+</a>
 
 <!-- ═══════════ NAV ═══════════ -->
 <nav class="nav" id="nav">
@@ -1601,48 +1783,6 @@
   </div>
 </section>
 
-<!-- ═══════════ ⑤ AVIS ═══════════ -->
-<section class="reviews" id="reviews">
-  <div class="section-inner">
-    <div class="section-label reveal">Témoignages</div>
-    <h2 class="section-title reveal">Ils font<br><em>confiance à leurs pattes</em></h2>
-    <div class="reviews-carousel" id="reviews-carousel">
-      <div class="reviews-track" id="reviews-track">
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">« Lulu revient épuisée et heureuse après chaque sortie. La photo WhatsApp, c'est adorable — on se sent impliqués même de loin. »</p>
-          <div class="review-author"><strong>Sophie M.</strong><span>Saint-Pons-de-Thomières</span></div>
-        </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">« Une vraie professionnelle, patiente et passionnée. Mon Border Collie a enfin des sorties à la hauteur de son énergie ! »</p>
-          <div class="review-author"><strong>Raphaël B.</strong><span>Olargues</span></div>
-        </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">« Une pro ça rassure vraiment. Et les sentiers qu'elle connaît sont magnifiques — mes chiens adorent la forêt. »</p>
-          <div class="review-author"><strong>Isabelle K.</strong><span>Saint-Amans-Soult</span></div>
-        </div>
-              <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">« Très sérieuse et à l'écoute. J'apprécie particulièrement les nouvelles et les photos après les promenades. Mon chien l'a adoptée dès la première rencontre.»</p>
-          <div class="review-author"><strong>Laurent B.</strong><span>Labastide-Rouairoux</span></div>
-        </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">« Mon chien revient toujours détendu et heureux de ses balades. On sent quelqu'un qui connaît vraiment les chiens et qui prend son travail à cœur. »</p>
-          <div class="review-author"><strong>Claire D.</strong><span>La Salvetat-sur-Agout</span></div>
-        </div>
-      </div>
-      <div class="reviews-nav">
-        <button class="reviews-dot active" onclick="slideReviews(0)"></button>
-        <button class="reviews-dot" onclick="slideReviews(1)"></button>
-        <button class="reviews-dot" onclick="slideReviews(2)"></button>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════ RUPTURE PHOTO 2 ═══════════ -->
 <div class="photo-break-2" id="photo-break-2">
   <img class="photo-break-2-bg" id="photo-break-2-bg" src="https://images.pexels.com/photos/17146221/pexels-photo-17146221.jpeg" />
@@ -1679,6 +1819,10 @@
       <div class="faq-item" onclick="toggleFaq(this)">
         <button class="faq-question">Acceptez-vous les chiots ? <span class="faq-chevron">▼</span></button>
         <div class="faq-answer"><p>Oui, j'accepte les chiots à partir de 3 mois, vaccins à jour. Entre 3 et 6 mois, la balade est plus courte — 30 à 45 min selon leur énergie — en solo ou accompagnés de mes propres chiens pour une intégration en douceur. À partir de 6 mois, ils rejoignent progressivement le groupe normal avec les autres chiens.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <button class="faq-question">Acceptez-vous les chiens âgés ? <span class="faq-chevron">▼</span></button>
+        <div class="faq-answer"><p>Absolument ! Les chiens seniors ont autant besoin de sortir que les jeunes, à leur rythme. J'adapte la durée et l'intensité de la balade à leur condition physique — pas question de les brusquer. Si votre chien a des besoins particuliers, dites-le moi lors du premier échange, on trouve ensemble la formule qui lui convient.</p></div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <button class="faq-question">Mon chien est réactif ou peu sociable, peut-il participer ? <span class="faq-chevron">▼</span></button>
@@ -1731,6 +1875,8 @@
     <h2 class="section-title reveal">Prenons contact<br><em>sans attendre</em></h2>
     <p class="contact-sub reveal">Un premier échange téléphonique pour tout savoir, sans engagement.</p>
     <p class="contact-sub reveal" style="font-size:0.9rem; margin-top:-1rem;">Lun – Ven : 8h–12h / 13h30–19h &nbsp;·&nbsp; Sam : 8h–12h</p>
+    <p class="contact-sub reveal" style="font-size:0.9rem; margin-top:-1rem;"><strong>🌅 Horaires estivaux (juin – sept.) &nbsp;·&nbsp; Lun – Sam : 7h–9h</strong></p>
+    <p class="contact-sub reveal" style="font-size:0.9rem; margin-top:-1rem;"><em>En été, les balades ont lieu tôt le matin pour le confort et la sécurité de vos chiens.</em></p>
     <div class="contact-btns reveal">
       <a href="tel:+33600000000" class="btn-contact btn-tel">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.41 2 2 0 0 1 3.68 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -1743,7 +1889,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Cyno Cross · Prémian</span>
-      <span>SIRET 000 000 000 00000 · RC Pro</span>
+      <span>SIRET 000 000 000 00000 (en cours) · RC Pro (en cours)</span>
       <button class="footer-legal-btn" onclick="document.getElementById('modal-legal').classList.add('open')">Mentions légales</button>
     </div>
   </div>
@@ -1756,17 +1902,18 @@
     <h2 class="modal-legal-title">Mentions légales</h2>
 
     <h3>Éditeur du site</h3>
-    <p>[Prénom Nom]<br>
+    <p>SANCHEZ Coralie<br>
     Auto-entrepreneuse — Promeneuse de chiens<br>
-    [Adresse, Prémian, 34220]<br>
+    Impasse Lou ceries 34390 PREMIAN<br>
     Tél. : 06 00 00 00 00<br>
     Email : cyno.cross@hotmail.com<br>
-    SIRET : 000 000 000 00000<br>
-    Assurance RC Pro</p>
+    SIRET : 000 000 000 00000 (en cours)<br>
+    Assurance RC Pro (en cours)</p>
 
     <h3>Hébergement</h3>
-    <p>[Nom de l'hébergeur]<br>
-    [Adresse de l'hébergeur]</p>
+    <p>GitHub Pages — Microsoft Corporation<br>
+    88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis<br>
+    <a href="https://pages.github.com" target="_blank" rel="noopener">pages.github.com</a></p>
 
     <h3>Propriété intellectuelle</h3>
     <p>L'ensemble du contenu de ce site (textes, visuels, structure) est la propriété de Cyno Cross. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
@@ -2176,31 +2323,6 @@ function toggleFaq(item) {
 })();
 
 /* ═══════════════════════════════════════════
-   REVIEWS CAROUSEL (simple)
-═══════════════════════════════════════════ */
-let reviewCurrent = 0;
-const track = document.getElementById('reviews-track');
-const dots = document.querySelectorAll('.reviews-dot');
-let reviewPaused = false;
-
-function slideReviews(idx) {
-  reviewCurrent = idx;
-  const cardW = track.children[0].offsetWidth + 24;
-  track.style.transform = `translateX(-${idx * cardW}px)`;
-  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-}
-
-// Pause on hover
-document.getElementById('reviews-carousel').addEventListener('mouseenter', () => reviewPaused = true);
-document.getElementById('reviews-carousel').addEventListener('mouseleave', () => reviewPaused = false);
-
-setInterval(() => {
-  if (reviewPaused) return;
-  const total = 3;
-  slideReviews((reviewCurrent + 1) % total);
-}, 4500);
-
-/* ═══════════════════════════════════════════
    MICRO-BOUNCE CTA (Framer-style via GSAP)
 ═══════════════════════════════════════════ */
 document.querySelectorAll('.btn-contact, .btn-cta').forEach(btn => {
@@ -2366,6 +2488,45 @@ gsap.utils.toArray('.faq-item').forEach((item, i) => {
     }
   });
 });
+
+/* ═══════════════════════════════════════════
+   MODALE OUVERTURE PROCHAINE — logique
+═══════════════════════════════════════════ */
+(function() {
+  const overlay = document.getElementById('modalLaunch');
+  const btnClose = document.getElementById('modalLaunchClose');
+  const btnCta   = document.getElementById('modalLaunchCta');
+
+  function openModal() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Affiche la modale après 1,2 s à chaque chargement de page
+  setTimeout(openModal, 1200);
+
+  btnClose.addEventListener('click', closeModal);
+
+  // Ferme aussi si on clique sur l'overlay (hors box)
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+
+  // Ferme et scroll vers #contact si CTA cliqué
+  btnCta.addEventListener('click', function() {
+    closeModal();
+  });
+
+  // Ferme avec Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+})();
 
 </script>
 </body>

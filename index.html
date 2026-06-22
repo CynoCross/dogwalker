@@ -29,6 +29,9 @@
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 
 
@@ -40,6 +43,7 @@
       --creme:       #F5F0E8;
       --foret:       #1C3D2B;
       --lime:        #8FBF44;
+      --lime-text:   #3D6B10; /* lime accessible sur fond clair */
       --terracotta:  #C2622A;
       --chataigner:  #7A4A2E;
 
@@ -121,7 +125,7 @@
       letter-spacing: -0.01em;
     }
 
-    .nav-logo span { color: var(--lime); }
+    .nav-logo span { color: var(--lime-text); }
 
     .nav-tel {
       display: flex;
@@ -1558,7 +1562,13 @@
 <!-- ═══════════ ① HERO ═══════════ -->
 <section class="hero" id="hero">
   <div class="hero-video-wrap">
-    <img width="1920" height="1080" class="hero-bg" fetchpriority="high" src="https://images.pexels.com/photos/10715262/pexels-photo-10715262.jpeg?auto=compress&cs=tinysrgb&w=1920&fm=webp" alt="Dog walker en forêt" />
+    <img width="1920" height="1080" class="hero-bg" fetchpriority="high"
+  src="https://images.pexels.com/photos/10715262/pexels-photo-10715262.jpeg?auto=compress&cs=tinysrgb&w=1920&fm=webp"
+  srcset="https://images.pexels.com/photos/10715262/pexels-photo-10715262.jpeg?auto=compress&cs=tinysrgb&w=800&fm=webp 800w,
+          https://images.pexels.com/photos/10715262/pexels-photo-10715262.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp 1200w,
+          https://images.pexels.com/photos/10715262/pexels-photo-10715262.jpeg?auto=compress&cs=tinysrgb&w=1920&fm=webp 1920w"
+  sizes="100vw"
+  alt="Dog walker en forêt" />
   </div>
   <div class="hero-overlay"></div>
   <canvas id="leaves-canvas"></canvas>
@@ -1583,7 +1593,12 @@
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-photo-wrap reveal">
-        <img width="600" height="750" loading="lazy" class="about-photo-img" src="https://images.pexels.com/photos/34289703/pexels-photo-34289703.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp" alt="Dog walker Prémian" />
+        <img width="600" height="750" loading="lazy" class="about-photo-img"
+  src="https://images.pexels.com/photos/34289703/pexels-photo-34289703.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp"
+  srcset="https://images.pexels.com/photos/34289703/pexels-photo-34289703.jpeg?auto=compress&cs=tinysrgb&w=400&fm=webp 400w,
+          https://images.pexels.com/photos/34289703/pexels-photo-34289703.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp 600w"
+  sizes="(max-width: 768px) 90vw, 500px"
+  alt="Dog walker Prémian" />
         <div class="about-photo-overlay"></div>
       </div>
       <div class="about-text">
@@ -1603,7 +1618,10 @@
 
 <!-- ═══════════ RUPTURE PHOTO 1 ═══════════ -->
 <div class="photo-break" id="photo-break-1">
-  <img width="1920" height="1080" loading="lazy" class="photo-break-bg" id="photo-break-1-bg" src="https://images.pexels.com/photos/34060702/pexels-photo-34060702.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp" />
+  <img width="1920" height="1080" loading="lazy" alt="" class="photo-break-bg" id="photo-break-1-bg" src="https://images.pexels.com/photos/34060702/pexels-photo-34060702.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp"
+  srcset="https://images.pexels.com/photos/34060702/pexels-photo-34060702.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp 600w,
+          https://images.pexels.com/photos/34060702/pexels-photo-34060702.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp 1200w"
+  sizes="100vw" />
   <div class="photo-break-overlay"></div>
   <div class="photo-break-text" id="photo-break-text">Un chien heureux, c'est un chien qui court, explore, renifle et profite de chaque instant.</div>
 </div>
@@ -1800,7 +1818,10 @@
 
 <!-- ═══════════ RUPTURE PHOTO 2 ═══════════ -->
 <div class="photo-break-2" id="photo-break-2">
-  <img width="1920" height="1080" loading="lazy" class="photo-break-2-bg" id="photo-break-2-bg" src="https://images.pexels.com/photos/17146221/pexels-photo-17146221.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp" />
+  <img width="1920" height="1080" loading="lazy" alt="" class="photo-break-2-bg" id="photo-break-2-bg" src="https://images.pexels.com/photos/17146221/pexels-photo-17146221.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp"
+  srcset="https://images.pexels.com/photos/17146221/pexels-photo-17146221.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp 600w,
+          https://images.pexels.com/photos/17146221/pexels-photo-17146221.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp 1200w"
+  sizes="100vw" />
   <div class="photo-break-2-overlay"></div>
   <div class="photo-break-2-quote reveal" id="pb2-quote">
     "Les sentiers du PNR Haut-Languedoc,<br>un cadre naturel exceptionnel pour vos compagnons."
@@ -1948,11 +1969,9 @@
   </a>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
 /* ═══════════════════════════════════════════
    FEUILLES TOMBANTES — Canvas 2D natif
    (Lottie simulé en canvas pour autonomie)
@@ -2546,7 +2565,9 @@ gsap.utils.toArray('.faq-item').forEach((item, i) => {
   });
 })();
 
+}); // DOMContentLoaded
 </script>
 </body>
 </html>
+
 

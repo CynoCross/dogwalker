@@ -2234,11 +2234,11 @@ ScrollTrigger.create({
 /* ═══════════════════════════════════════════
    FAQ ACCORDION
 ═══════════════════════════════════════════ */
-function toggleFaq(item) {
+window.toggleFaq = function(item) {
   const wasOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
   if (!wasOpen) item.classList.add('open');
-}
+};
 
 /* ═══════════════════════════════════════════
    PRICING CARDS — TILT 3D + SPOTLIGHT
@@ -2535,3 +2535,4 @@ gsap.utils.toArray('.faq-item').forEach((item, i) => {
 </script>
 </body>
 </html>
+
